@@ -14,7 +14,7 @@ import { SwiperConfig, SwiperConfigInterface, SwiperRenderBulletFunction } from 
   styleUrls: [ './lib/swiper.component.css' ],
   encapsulation: ViewEncapsulation.None
 })
-export class SwiperComponent implements OnInit, OnDestroy {
+export class SwiperComponent implements OnInit {
   private mo: any;
 
   public swiperConfig: any;
@@ -108,7 +108,8 @@ export class SwiperComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
+  destroy() {
+    this.directiveRef.destroy();
     if (this.mo) {
       this.mo.disconnect();
     }

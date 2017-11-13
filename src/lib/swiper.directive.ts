@@ -14,7 +14,7 @@ import { SwiperEvents, SwiperConfig, SwiperConfigInterface } from './swiper.inte
   selector: '[swiper]',
   exportAs: 'ngxSwiper'
 })
-export class SwiperDirective implements OnInit, DoCheck, OnDestroy, OnChanges {
+export class SwiperDirective implements OnInit, DoCheck, OnChanges {
   private instance: any;
 
   private configDiff: KeyValueDiffer<string, any>;
@@ -164,7 +164,7 @@ export class SwiperDirective implements OnInit, DoCheck, OnDestroy, OnChanges {
       if (changes) {
         this.initialIndex = this.getIndex(true);
 
-        this.ngOnDestroy();
+        this.destroy();
 
         this.ngOnInit();
 
@@ -173,7 +173,7 @@ export class SwiperDirective implements OnInit, DoCheck, OnDestroy, OnChanges {
     }
   }
 
-  ngOnDestroy() {
+  destroy() {
     if (this.instance) {
       this.zone.runOutsideAngular(() => {
         this.instance.destroy(true, true);
